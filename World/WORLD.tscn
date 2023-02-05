@@ -1,0 +1,320 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Enviroments/Tilemap/World.tres" type="TileSet" id=1]
+[ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Enemies/Dummy/DUMMY.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Characters/Enemies/Shooter/Shooter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Misc/UI.gd" type="Script" id=5]
+[ext_resource path="res://World/World1.gd" type="Script" id=6]
+[ext_resource path="res://Enviroments/Tilemap/Field - Copy.png" type="Texture" id=7]
+[ext_resource path="res://Misc/Fonts/RingbearerMedium-51mgZ.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Misc/UI_Elem/Bar_background.png" type="Texture" id=9]
+[ext_resource path="res://Misc/UI_Elem/Bar_magic.png" type="Texture" id=10]
+[ext_resource path="res://Misc/UI_Elem/Bar_health.png" type="Texture" id=11]
+[ext_resource path="res://Misc/UI_Elem/Exclemation.png" type="Texture" id=12]
+[ext_resource path="res://Misc/UI_Elem/background.png" type="Texture" id=13]
+[ext_resource path="res://Characters/Enemies/Chaser/Chaser.tscn" type="PackedScene" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 144, 66 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 90.5192, 46.9371 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "Field - Copy.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 64, 256, 320, 320 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 1 ), 256, Vector2( 0, 2 ), 260, Vector2( 0, 3 ), 4, Vector2( 1, 0 ), 256, Vector2( 1, 1 ), 324, Vector2( 1, 2 ), 325, Vector2( 1, 3 ), 261, Vector2( 1, 4 ), 4, Vector2( 2, 0 ), 320, Vector2( 2, 1 ), 325, Vector2( 2, 2 ), 325, Vector2( 2, 3 ), 325, Vector2( 2, 4 ), 5, Vector2( 3, 0 ), 64, Vector2( 3, 1 ), 321, Vector2( 3, 2 ), 325, Vector2( 3, 3 ), 69, Vector2( 3, 4 ), 1, Vector2( 4, 1 ), 64, Vector2( 4, 2 ), 65, Vector2( 4, 3 ), 1 ]
+0/autotile/icon_coordinate = Vector2( 2, 2 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+size = 27
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "rotate"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1, 1.4, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.286275, 0.160784, 0.105882, 1 ), Color( 0.643137, 0, 0, 1 ), Color( 0.643137, 0, 0, 1 ), Color( 0.286275, 0.160784, 0.105882, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 61
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 61
+outline_size = 3
+outline_color = Color( 0.0146484, 0.000972748, 0.000972748, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="World1" type="TileMap" parent="."]
+light_mask = 3
+rotation = 0.00142925
+tile_set = ExtResource( 1 )
+collision_layer = 7
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( -131068, 2, 0, -131067, 2, 0, -131066, 2, 0, -131065, 2, 0, -131064, 2, 0, -131063, 2, 0, -131062, 2, 0, -131061, 2, 0, -131060, 2, 0, -131059, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 22, 0, -65532, 22, 1, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 2, 0, -65525, 6, 0, -65524, 2, 0, -65523, 2, 0, -65522, 2, 0, -65521, 2, 0, -65520, 2, 0, -65519, 2, 0, -65518, 2, 0, 65533, 21, 0, 65534, 21, 0, 65535, 21, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 22, 65536, 4, 22, 65537, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 18, 2, 0, 131066, 21, 0, 131067, 21, 0, 131068, 21, 0, 131069, 21, 0, 131070, 21, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 65543, 19, 0, 65544, 19, 1, 65545, 19, 2, 65546, 2, 0, 65547, 2, 0, 65548, 2, 0, 65549, 2, 0, 65550, 2, 0, 65551, 2, 0, 65552, 2, 0, 65553, 2, 0, 65554, 2, 0, 196602, 21, 0, 196603, 21, 0, 196604, 21, 0, 196605, 21, 0, 196606, 21, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 10, 0, 131078, 2, 0, 131079, 19, 65536, 131080, 19, 65537, 131081, 19, 65538, 131082, 7, 0, 131083, 2, 0, 131084, 2, 0, 131085, 4, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 131089, 2, 0, 131090, 2, 0, 262138, 21, 0, 262139, 21, 0, 262140, 21, 0, 262141, 21, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0, 196609, 9, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 19, 131072, 196616, 19, 131073, 196617, 19, 131074, 196618, 4, 0, 196619, 3, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0, 196626, 2, 0, 196627, 2, 0, 327673, 21, 0, 327674, 21, 0, 327675, 21, 0, 327676, 21, 0, 327677, 21, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 2, 0, 262151, 2, 0, 262152, 2, 0, 262153, 2, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 393209, 21, 0, 393210, 15, 0, 393211, 21, 0, 393212, 21, 0, 393213, 2, 0, 393214, 2, 0, 393215, 2, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 0, 327684, 6, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 2, 0, 327692, 2, 0, 327693, 2, 0, 327694, 2, 0, 327695, 2, 0, 327696, 2, 0, 327697, 2, 0, 327698, 2, 0, 327699, 2, 0, 458744, 21, 0, 458745, 21, 0, 458746, 21, 0, 458747, 21, 0, 458748, 21, 0, 458749, 2, 0, 458750, 2, 0, 458751, 2, 0, 393216, 6, 0, 393217, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393229, 2, 0, 393230, 20, 1, 393231, 20, 1, 393232, 20, 1, 393233, 20, 1, 393234, 20, 1, 524281, 21, 0, 524282, 21, 0, 524283, 21, 0, 524284, 21, 0, 524285, 21, 0, 524286, 2, 0, 524287, 2, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 8, 0, 458764, 2, 0, 458765, 20, 0, 458766, 20, 131074, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 20, 131072, 458771, 20, 2, 589817, 21, 0, 589818, 21, 0, 589819, 21, 0, 589820, 21, 0, 589821, 21, 0, 589822, 21, 0, 589823, 2, 0, 524288, 2, 0, 524289, 2, 0, 524290, 21, 0, 524291, 2, 0, 524292, 2, 0, 524294, 8, 0, 524295, 8, 0, 524296, 8, 0, 524300, 2, 0, 524301, 20, 65536, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524307, 20, 65538, 655353, 21, 0, 655354, 21, 0, 655355, 16, 0, 655356, 21, 0, 655357, 16, 0, 655358, 21, 0, 655359, 2, 0, 589824, 2, 0, 589825, 21, 0, 589826, 21, 0, 589827, 1, 65537, 589828, 1, 0, 589829, 1, 2, 589836, 2, 0, 589837, 20, 65536, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 20, 65538, 720890, 21, 0, 720891, 21, 0, 720892, 21, 0, 720893, 21, 0, 720894, 21, 0, 720895, 21, 0, 655360, 21, 0, 655361, 21, 0, 655362, 1, 65537, 655365, 1, 131074, 655372, 2, 0, 655373, 20, 65536, 655374, 2, 0, 655375, 2, 0, 655376, 2, 0, 655377, 2, 0, 655378, 2, 0, 655379, 20, 65538, 786426, 21, 0, 786427, 21, 0, 786428, 21, 0, 786429, 21, 0, 786430, 21, 0, 786431, 21, 0, 720896, 21, 0, 720897, 21, 0, 720898, 21, 0, 720899, 21, 0, 720900, 21, 0, 720901, 21, 0, 720902, 21, 0, 720909, 20, 131072, 720910, 20, 131073, 720911, 20, 131073, 720912, 20, 131073, 720913, 20, 131073, 720914, 20, 131073, 720915, 20, 131074, 851965, 21, 0, 851966, 21, 0, 851967, 21, 0, 786432, 21, 0, 786433, 21, 0, 786434, 21, 0, 786435, 21, 0, 786436, 21, 0, 786437, 21, 0, 786445, 17, 0, 786446, 17, 0, 786447, 2, 0, 786448, 2, 0, 917502, 21, 0, 917503, 21, 0, 851968, 21, 0, 851969, 21, 0, 851970, 21, 0, 851971, 21, 0, 851972, 21, 0, 851973, 40, 0, 851974, 40, 1, 851975, 40, 2, 851983, 36, 0, 983038, 21, 0, 983039, 21, 0, 917504, 21, 0, 917505, 21, 0, 917506, 21, 0, 917507, 21, 0, 917508, 40, 0, 917509, 40, 3, 917510, 40, 65537, 917511, 40, 65538, 917518, 36, 0, 917519, 36, 0, 983041, 21, 0, 983042, 21, 0, 983043, 21, 0, 983044, 40, 131072, 983045, 40, 131073, 983046, 40, 131073, 983047, 40, 131074, 983054, 36, 0 )
+script = ExtResource( 6 )
+
+[node name="DUMMY" parent="World1" instance=ExtResource( 3 )]
+position = Vector2( 52, 48 )
+
+[node name="Shooter" parent="World1" instance=ExtResource( 4 )]
+position = Vector2( 277, 478 )
+
+[node name="Shooter2" parent="World1" instance=ExtResource( 4 )]
+position = Vector2( 1115, 98 )
+
+[node name="DOOROPEN" type="Area2D" parent="World1"]
+position = Vector2( 1010, 311 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World1/DOOROPEN"]
+position = Vector2( 37.4664, 14.5032 )
+shape = SubResource( 1 )
+
+[node name="NEWWORD" type="Area2D" parent="World1"]
+position = Vector2( 557.171, 119.204 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World1/NEWWORD"]
+position = Vector2( 80.5192, 36.9371 )
+shape = SubResource( 9 )
+
+[node name="ForrestOverlay" type="TileMap" parent="World1"]
+modulate = Color( 1, 1, 1, 0.423529 )
+z_index = 5
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( -131070, 0, 1, -131069, 0, 2, -131068, 0, 2, -131067, 0, 65540, -65535, 0, 1, -65534, 0, 65537, -65533, 0, 131073, -65532, 0, 131075, -65531, 0, 65539, -65530, 0, 3, 0, 0, 65536, 1, 0, 65537, 2, 0, 131073, 3, 0, 131075, 4, 0, 131073, 5, 0, 131075, 6, 0, 65539, 7, 0, 65540, 65536, 0, 196608, 65537, 0, 196609, 65538, 0, 131074, 65539, 0, 131073, 65540, 0, 196611, 65541, 0, 262146, 65542, 0, 262146, 65543, 0, 196612, 131073, 0, 131072, 131074, 0, 131074, 131075, 0, 131073, 131076, 0, 131076, 196608, 0, 65536, 196609, 0, 65537, 196610, 0, 196610, 196611, 0, 131075, 196612, 0, 65539, 196613, 0, 2, 196614, 0, 3, 327679, 0, 65536, 262144, 0, 65537, 262145, 0, 196611, 262146, 0, 262146, 262147, 0, 262146, 262148, 0, 196609, 262149, 0, 131073, 262150, 0, 131076, 393215, 0, 196608, 327680, 0, 262146, 327681, 0, 196612, 327684, 0, 131072, 327685, 0, 131073, 327686, 0, 131076, 393220, 0, 262145, 393221, 0, 262146, 393222, 0, 262147 )
+
+[node name="Chaser" parent="World1/ForrestOverlay" instance=ExtResource( 14 )]
+position = Vector2( 782.414, 288.882 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+light_mask = 0
+position = Vector2( -18, 312 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+margin_right = 1027.0
+margin_bottom = 603.0
+
+[node name="Control" type="Control" parent="UI/CenterContainer"]
+margin_left = 513.0
+margin_top = 301.0
+margin_right = 513.0
+margin_bottom = 301.0
+
+[node name="ProgressHP" type="TextureProgress" parent="UI/CenterContainer/Control"]
+margin_left = -499.0
+margin_top = 258.0
+margin_right = 36.0
+margin_bottom = 284.0
+max_value = 10.0
+value = 4.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+texture_progress_offset = Vector2( 5, 3 )
+
+[node name="HP" type="Label" parent="UI/CenterContainer/Control/ProgressHP"]
+margin_left = 7.0
+margin_top = -15.0
+margin_right = 97.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 3 )
+text = "Health"
+
+[node name="ProgressSP" type="TextureProgress" parent="UI/CenterContainer/Control"]
+margin_left = 3.0
+margin_top = 258.0
+margin_right = 538.0
+margin_bottom = 318.0
+max_value = 10.0
+value = 6.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+texture_progress_offset = Vector2( 4, 3 )
+
+[node name="SP" type="Label" parent="UI/CenterContainer/Control/ProgressSP"]
+margin_left = 398.0
+margin_top = -15.0
+margin_right = 488.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 3 )
+text = "Magic"
+
+[node name="Exclamation" type="Sprite" parent="UI"]
+visible = false
+position = Vector2( 962, 58 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Exclamation"]
+anims/RESET = SubResource( 4 )
+anims/rotate = SubResource( 5 )
+
+[node name="TEXTBOXES" type="Control" parent="UI"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite" type="Sprite" parent="UI/TEXTBOXES"]
+position = Vector2( 519, 242 )
+texture = ExtResource( 13 )
+
+[node name="Newword" type="Control" parent="UI/TEXTBOXES/Sprite"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/TEXTBOXES/Sprite/Newword"]
+margin_left = -13.0
+margin_top = 40.0
+margin_right = 27.0
+margin_bottom = 80.0
+use_top_left = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TEXTBOXES/Sprite/Newword/CenterContainer"]
+margin_left = -333.0
+margin_top = -37.0
+margin_right = 332.0
+margin_bottom = 36.0
+custom_constants/separation = 60
+
+[node name="LATVISH" type="Label" parent="UI/TEXTBOXES/Sprite/Newword/CenterContainer/HBoxContainer"]
+margin_right = 191.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 6 )
+text = "UGNIS"
+
+[node name="IS" type="Label" parent="UI/TEXTBOXES/Sprite/Newword/CenterContainer/HBoxContainer"]
+margin_left = 251.0
+margin_right = 471.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 6 )
+text = "MEANS"
+
+[node name="TRANSLATION" type="Label" parent="UI/TEXTBOXES/Sprite/Newword/CenterContainer/HBoxContainer"]
+margin_left = 531.0
+margin_right = 665.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 7 )
+text = "FIRE"
+
+[node name="Wordlist" type="Control" parent="UI/TEXTBOXES/Sprite"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/TEXTBOXES/Sprite/Wordlist"]
+margin_left = -499.0
+margin_top = -140.0
+margin_right = 477.0
+margin_bottom = 353.0
+custom_fonts/normal_font = SubResource( 8 )
+text = "ugnis dagti"
+
+[node name="TRANSLATION2" type="Label" parent="UI/TEXTBOXES/Sprite/Wordlist"]
+margin_left = -290.0
+margin_top = -228.0
+margin_right = 263.0
+margin_bottom = -155.0
+custom_fonts/font = SubResource( 7 )
+text = "KNOWN     WORDS"
+
+[connection signal="displayWordsLearned" from="World1" to="UI" method="_on_World1_displayWordsLearned"]
+[connection signal="newWordLearned" from="World1" to="UI" method="_on_World1_newWordLearned"]
+[connection signal="body_entered" from="World1/DOOROPEN" to="World1" method="_on_DOOROPEN_body_entered"]
+[connection signal="body_exited" from="World1/DOOROPEN" to="World1" method="_on_DOOROPEN_body_exited"]
+[connection signal="body_entered" from="World1/NEWWORD" to="World1" method="_on_NEWWORD_body_entered"]

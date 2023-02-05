@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Forest_Jungle_BGM.ogg-e4dbe75757d274e82ab2bc2a1a8e105f.oggstr"
+
+[deps]
+
+source_file="res://World/Forest_Jungle_BGM.ogg"
+dest_files=[ "res://.import/Forest_Jungle_BGM.ogg-e4dbe75757d274e82ab2bc2a1a8e105f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Characters/Enemies/Chaser/Chaser.gd" type="Script" id=1]
+[ext_resource path="res://Characters/Enemies/Chaser/Chaser.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 29.0172
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 461.108
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 31.0483
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.443137, 0.0313726, 0.0313726, 1 ), Color( 0.443137, 0.0313726, 0.0313726, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -20.0, 20.0, 0.0 ]
+}
+
+[node name="Chaser" type="KinematicBody2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource( 2 )
+
+[node name="Hurt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt"]
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/damaged = SubResource( 5 )
+
+[node name="Retreat timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Chasing timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_Detection_body_exited"]
+[connection signal="body_entered" from="Hurt" to="." method="_on_Hurt_body_entered"]
+[connection signal="timeout" from="Retreat timer" to="." method="_on_Retreat_timer_timeout"]
+[connection signal="timeout" from="Chasing timer" to="." method="_on_Chasing_timer_timeout"]

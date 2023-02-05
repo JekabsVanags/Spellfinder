@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Misc/Particles/PNG (Transparent)/circle_05.png" type="Texture" id=1]
+[ext_resource path="res://Characters/Enemies/Shooter/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 27.2947
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 34.7131
+
+[node name="Bullet" type="KinematicBody2D"]
+scale = Vector2( 0.3, 0.3 )
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -9.53674e-07, 0 )
+scale = Vector2( 0.216797, 0.216797 )
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
